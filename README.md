@@ -9,7 +9,13 @@ Package to report laravel errors by email with throttling and deduplication.
 composer require adwiv/laravel-error-mailer
 ```
 
-2. Add the following keys to .env file
+2. Run the migration to create the `error_logs` table.
+
+```bash
+php artisan migrate
+```
+
+3. Add the following keys to .env file
 
 ```bash
 # Required Key
@@ -22,7 +28,7 @@ ERROR_MAILER_REPEAT_AFTER = 300   # Time in seconds for which same error will no
 ERROR_MAILER_HOURLY_LIMIT = 10    # Maximum number of error mails that will be sent in an hour
 ```
 
-3. Configure `config/logging.php`. The package automatically adds a logging channel named `error-mailer`. 
+4. Configure `config/logging.php`. The package automatically adds a logging channel named `error-mailer`. 
 
 The simplest way to use it is to add it the `stack` channel.
 
