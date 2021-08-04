@@ -44,3 +44,11 @@ The simplest way to use it is to add it the `stack` channel.
 ```
 
 Thats all. Any errors should now be reported to all the email addresses listed in `ERROR_MAILER_TO` environment option.
+
+## Troubleshooting
+If mails are not being recieived, please check:
+
+1. Mail sending is configured correctly and you are able to send other mails without any issues.
+2. The `ERROR_MAILER_TO` variable is defined in .env file and has valid email addresses (without spaces)
+3. The mail queue is being processed correctly
+4. Check the laravel.log for any reported issues.
