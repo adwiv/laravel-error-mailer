@@ -1,0 +1,21 @@
+{
+    "name": "adwiv/laravel-error-mailer",
+    "description": "Report errors by mail while ignoring repeating ones.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Adwiv\\Laravel\\ErrorMailer\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Adwiv\\Laravel\\ErrorMailer\\ErrorMailerServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+    }
+}
