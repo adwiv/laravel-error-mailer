@@ -3,12 +3,14 @@
     "description": "Report errors by mail while ignoring repeating ones.",
     "type": "library",
     "license": "MIT",
+    "require": {
+	"php": ">=7.4",
+    },
     "autoload": {
         "psr-4": {
             "Adwiv\\Laravel\\ErrorMailer\\": "src/"
         }
     },
-    "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
@@ -16,6 +18,5 @@
             ]
         }
     },
-    "require-dev": {
-    }
+    "minimum-stability": "dev",
 }
