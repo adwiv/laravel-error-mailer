@@ -39,6 +39,10 @@ class ErrorReportingJob implements ShouldQueue
         if ($reportTo && $reportFrom) {
             $mailable = new ErrorMail($this->message, $this->content, $this->url, $this->inputs);
             Mail::send($mailable);
+        } else if(!$reportTo) {
+             Illuminate\Support\Facades\Log::info("ERROR_MAILER_TO environment variable is not set");
+        } else {
+            Illuminate\Support\Facades\Log::info("ERROR_MAILER_FROM or MAIL_FROM_ADDRESS environment variable is not set");
         }
     }
 }
