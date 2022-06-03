@@ -34,8 +34,8 @@ class ErrorReportingJob implements ShouldQueue
      */
     public function handle()
     {
-        $reportTo = env('ERROR_MAILER_TO');
-        $reportFrom = env('ERROR_MAILER_FROM', config('mail.from.address'));
+        $reportTo = config('laravel-error-mailer.to');
+        $reportFrom = config('laravel-error-mailer.from');
 
         if ($reportTo && $reportFrom) {
             $mailable = new ErrorMail($this->message, $this->content, $this->url, $this->inputs);

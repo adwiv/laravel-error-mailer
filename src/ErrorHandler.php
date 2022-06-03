@@ -25,8 +25,8 @@ class ErrorHandler extends AbstractProcessingHandler
             $content = "<pre style=\"font-family: inherit\">$content</pre>";
         }
 
-        $repeatSeconds = env('ERROR_MAILER_REPEAT_AFTER', 300);
-        $hourlyLimit = env('ERROR_MAILER_HOURLY_LIMIT', 10);
+        $repeatSeconds = config('laravel-error-mailer.repeat_after', 300);
+        $hourlyLimit = config('laravel-error-mailer.hourly_limit', 10);
 
         if ($lastLog = ErrorLog::withRecentMessage($message, $repeatSeconds)) {
             $lastLog->increment('repeats');
