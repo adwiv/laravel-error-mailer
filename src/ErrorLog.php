@@ -9,7 +9,7 @@ class ErrorLog extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['message', 'url', 'inputs', 'content', 'repeats'];
     protected $casts = ['inputs' => 'array'];
 
     public static function createLog(string $message, string $content, ?string $url, ?array $inputs): ErrorLog
@@ -30,7 +30,7 @@ class ErrorLog extends Model
     public static function withRecentMessage($message, $withinSeconds = 60)
     {
         $timestamp = now()->subSeconds($withinSeconds);
-        return self::whereMessage($message)->where('created_at', '>', $timestamp)->first(['id']);
+        return self::whereMessage($message)->where('created_at', '>', $timestamp)->first(['id', 'repeats']);
     }
 
     public static function recentCount($withinSeconds = 900)

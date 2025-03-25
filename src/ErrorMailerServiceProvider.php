@@ -14,6 +14,7 @@ class ErrorMailerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/error-logging.php', 'logging.channels');
+        $this->mergeConfigFrom(__DIR__ . '/../config/error-mailer.php', 'error-mailer');
         $this->loadViewsFrom(__DIR__ . '/../resources', 'error-mailer');
     }
 

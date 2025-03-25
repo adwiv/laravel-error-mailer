@@ -31,10 +31,10 @@ class ErrorMail extends Mailable
      */
     public function build(): ErrorMail
     {
-        $reportTo = env('ERROR_MAILER_TO');
+        $mailFrom = config('error-mailer.mail_from');
+        $reportTo = config('error-mailer.report_to');
         $reportTo = explode(',', $reportTo);
         $reportTo = array_map('trim', $reportTo);
-        $mailFrom = env('ERROR_MAILER_FROM', config('mail.from.address'));
 
         return $this->view('error-mailer::error-mail')
             ->from($mailFrom)

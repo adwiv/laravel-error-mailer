@@ -15,10 +15,10 @@ class CreateErrorLogsTable extends Migration
     {
         Schema::create('error_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('message');
-            $table->string('url')->nullable();
+            $table->text('message');
+            $table->text('url')->nullable();
             $table->json('inputs')->nullable();
-            $table->text('content')->nullable();
+            $table->longText('content')->nullable();
             $table->integer('repeats')->default(0);
             $table->timestamps();
         });
