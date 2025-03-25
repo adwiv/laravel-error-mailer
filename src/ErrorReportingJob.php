@@ -34,13 +34,13 @@ class ErrorReportingJob implements ShouldQueue
      */
     public function handle()
     {
-        $reportTo = env('ERROR_MAILER_TO');
-        $reportFrom = env('ERROR_MAILER_FROM', config('mail.from.address'));
+        $reportTo = config('error-mailer.report_to');
+        $reportFrom = config('error-mailer.mail_from');
 
         if ($reportTo && $reportFrom) {
             $mailable = new ErrorMail($this->message, $this->content, $this->url, $this->inputs);
             Mail::send($mailable);
-        } else if(!$reportTo) {
+        } else if (!$reportTo) {
             Log::info("ERROR_MAILER_TO environment variable is not set");
         } else {
             Log::info("ERROR_MAILER_FROM or MAIL_FROM_ADDRESS environment variable is not set");

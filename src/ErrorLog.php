@@ -9,7 +9,7 @@ class ErrorLog extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['message', 'url', 'inputs', 'content', 'repeats'];
     protected $casts = ['inputs' => 'array'];
 
     public static function createLog(string $message, string $content, ?string $url, ?array $inputs): ErrorLog

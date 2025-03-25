@@ -5,16 +5,17 @@ namespace Adwiv\Laravel\ErrorMailer;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\HtmlFormatter;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Logger;
+use Monolog\LogRecord;
+use Monolog\Level;
 
 class ErrorHandler extends AbstractProcessingHandler
 {
-    public function __construct($level = Logger::ERROR, bool $bubble = true)
+    public function __construct($level = Level::Error, bool $bubble = true)
     {
         parent::__construct($level, $bubble);
     }
 
-    protected function write(array $record): void
+    protected function write(LogRecord $record): void
     {
         $url = url()->current();
         $inputs = request()->input();
@@ -25,8 +26,8 @@ class ErrorHandler extends AbstractProcessingHandler
             $content = "<pre style=\"font-family: inherit\">$content</pre>";
         }
 
-        $repeatSeconds = env('ERROR_MAILER_REPEAT_AFTER', 300);
-        $hourlyLimit = env('ERROR_MAILER_HOURLY_LIMIT', 10);
+        $repeatSeconds = config('error-mailer.repeat_after', 300);
+        $hourlyLimit = config('error-mailer.hourly_limit', 10);
 
         if ($lastLog = ErrorLog::withRecentMessage($message, $repeatSeconds)) {
             $lastLog->increment('repeats');
