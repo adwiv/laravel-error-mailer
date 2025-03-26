@@ -30,7 +30,7 @@ class ErrorLog extends Model
     public static function withRecentMessage($message, $withinSeconds = 60)
     {
         $timestamp = now()->subSeconds($withinSeconds);
-        return self::whereMessage($message)->where('created_at', '>', $timestamp)->first(['id']);
+        return self::whereMessage($message)->where('created_at', '>', $timestamp)->first(['id', 'repeats']);
     }
 
     public static function recentCount($withinSeconds = 900)
